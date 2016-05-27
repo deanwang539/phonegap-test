@@ -44,6 +44,17 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
+        document.getElementsByTagName('button')[0].addEventListener("click", openBrowser);
+        document.getElementsByTagName('button')[1].addEventListener("click", openCamera);
+
         console.log('Received Event: ' + id);
     }
 };
+
+function openBrowser(){
+  var ref = cordova.InAppBrowser.open('http://www.google.com', '_blank', 'location=yes');
+}
+
+function openCamera(){
+  navigator.camera.getPicture(function(){}, function(){}, {saveToPhotoAlbum: true});
+}
