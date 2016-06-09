@@ -46,8 +46,8 @@ var app = {
 
         document.getElementsByTagName('button')[0].addEventListener("click", openBrowser);
         document.getElementsByTagName('button')[1].addEventListener("click", openCamera);
+        document.getElementsByTagName('button')[2].addEventListener("click", createEvent);
 
-        console.log('Received Event: ' + id);
     }
 };
 
@@ -57,4 +57,27 @@ function openBrowser(){
 
 function openCamera(){
   navigator.camera.getPicture(function(){}, function(){}, {saveToPhotoAlbum: true});
+}
+
+function createEvent(){
+  var title = 'My Event Title';
+  var location = 'My Event Location';
+  var notes = 'My interesting Event notes.';
+  var startDate = new Date();
+  var endDate = new Date();
+  var calendarName = "MyCal";
+
+  // clean up the dates a bit
+  startDate.setMinutes(0);
+  endDate.setMinutes(0);
+  startDate.setSeconds(0);
+  endDate.setSeconds(0);
+
+  // add a few hours to the dates, JS will automatically update the date (+1 day) if necessary
+  startDate.setHours(startDate.getHours()+2);
+  endDate.setHours(endDate.getHours()+3);
+  var success = function(message) { alert("Success: " + JSON.stringify(message)); };
+  var error = function(message) { alert("Error: " + message); };
+  // create an event interactively
+  window.plugins.calendar.createEventInteractively(title, location, notes, startDate, endDate, success, error);
 }
