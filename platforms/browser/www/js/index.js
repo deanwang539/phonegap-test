@@ -47,6 +47,35 @@ var app = {
         document.getElementsByTagName('button')[0].addEventListener("click", openBrowser);
         document.getElementsByTagName('button')[1].addEventListener("click", openCamera);
         document.getElementsByTagName('button')[2].addEventListener("click", createEvent);
+        $(document).ready( function() {
+            alert("Your book is overdue.");
+            $('.gauge').gauge({
+              values: {
+                0 : '0',
+                20: '2',
+                40: '4',
+                60: '6',
+                80: '8',
+                100: '10'
+              },
+              colors: {
+                0 : '#666',
+                60: '#ffa500',
+                80: '#f00'
+              },
+              angles: [
+                180,
+                360
+              ],
+              lineWidth: 10,
+              arrowWidth: 20,
+              arrowColor: '#ccc',
+              inset:true,
+
+              value: 30
+            });
+        });
+
 
     }
 };
